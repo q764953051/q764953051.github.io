@@ -10,14 +10,14 @@
   <meta name="description" content="一、调优的目的 充分的利用机器的性能，更快的完成mr程序的计算任务。甚至是在有限的机器条件下，能够支持运行足够多的mr程序。 二、调优的总体概述 从mr程序的内部运行机制，我们可以了解到一个mr程序由mapper和reducer两个阶段组成，其中mapper阶段包括数据的读取、map处理以及写出操作(排序和合并&#x2F;sort&amp;merge)，而reducer阶段包含mapper输出数据的获取、数">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MR调优">
-<meta property="og:url" content="http://yoursite.com/2020/02/27/MR%E8%B0%83%E4%BC%98/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/11/27/MR%E8%B0%83%E4%BC%98/index.html">
 <meta property="og:site_name" content="PigsCode">
 <meta property="og:description" content="一、调优的目的 充分的利用机器的性能，更快的完成mr程序的计算任务。甚至是在有限的机器条件下，能够支持运行足够多的mr程序。 二、调优的总体概述 从mr程序的内部运行机制，我们可以了解到一个mr程序由mapper和reducer两个阶段组成，其中mapper阶段包括数据的读取、map处理以及写出操作(排序和合并&#x2F;sort&amp;merge)，而reducer阶段包含mapper输出数据的获取、数">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-27T15:06:34.000Z">
-<meta property="article:modified_time" content="2020-02-27T15:08:02.907Z">
+<meta property="article:published_time" content="2019-11-27T15:06:34.000Z">
+<meta property="article:modified_time" content="2020-02-27T15:11:04.978Z">
 <meta property="article:author" content="PigsCode">
-<meta property="article:tag" content="-MapReduce -Hadoop">
+<meta property="article:tag" content="MapReduce">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="PigsCode" type="application/atom+xml">
@@ -73,8 +73,8 @@
       <div class="outer">
         <section id="main"><article id="post-MR调优" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/02/27/MR%E8%B0%83%E4%BC%98/" class="article-date">
-  <time datetime="2020-02-27T15:06:34.000Z" itemprop="datePublished">2020-02-27</time>
+    <a href="/2019/11/27/MR%E8%B0%83%E4%BC%98/" class="article-date">
+  <time datetime="2019-11-27T15:06:34.000Z" itemprop="datePublished">2019-11-27</time>
 </a>
     
   <div class="article-category">
@@ -109,10 +109,10 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/02/27/MR%E8%B0%83%E4%BC%98/" data-id="ck74vu12i0000lcu9ckfj9le0" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/11/27/MR%E8%B0%83%E4%BC%98/" data-id="ck74vu12i0000lcu9ckfj9le0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MapReduce-Hadoop/" rel="tag">-MapReduce -Hadoop</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MapReduce/" rel="tag">MapReduce</a></li></ul>
 
     </footer>
   </div>
@@ -120,10 +120,19 @@
     
 <nav id="article-nav">
   
+    <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HDFS读写流程
+        
+      </div>
+    </a>
   
-    <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+  
+    <a href="/2019/10/08/%E8%AE%BA%E6%96%87/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">单例模式的实现</div>
+      <div class="article-nav-title">论文</div>
     </a>
   
 </nav>
@@ -149,7 +158,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce-Hadoop/" rel="tag">-MapReduce -Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/" rel="tag">MapReduce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -159,7 +168,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/MapReduce-Hadoop/" style="font-size: 10px;">-MapReduce -Hadoop</a> <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -168,7 +177,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
     </div>
   </div>
 
@@ -181,10 +190,6 @@
       <ul>
         
           <li>
-            <a href="/2020/02/27/MR%E8%B0%83%E4%BC%98/">MR调优</a>
-          </li>
-        
-          <li>
             <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
           </li>
         
@@ -194,6 +199,10 @@
         
           <li>
             <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/">HDFS读写流程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/MR%E8%B0%83%E4%BC%98/">MR调优</a>
           </li>
         
           <li>
