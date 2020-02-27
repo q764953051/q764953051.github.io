@@ -70,6 +70,131 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-单例模式的实现" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-date">
+  <time datetime="2020-01-03T08:26:14.000Z" itemprop="datePublished">2020-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>单例模式：类只会被实例化一次，每次都是调用同一个对象。</p>
+<p>在计算机系统中，还有 Windows 的回收站、操作系统中的文件系统、多线程中的线程池、显卡的驱动程序对象、打印机的后台处理服务、应用程序的日志对象、数据库的连接池、网站的计数器、Web 应用的配置对象、应用程序中的对话框、系统中的缓存等常常被设计成单例。</p>
+<p>单例模式有 3 个特点：</p>
+<ul>
+<li>单例类只有一个实例对象；</li>
+<li>该单例对象必须由单例类自行创建；</li>
+<li>单例类对外提供一个访问该单例的全局访问点；</li>
+</ul>
+<h3 id="1、懒汉式（效率太低）"><a href="#1、懒汉式（效率太低）" class="headerlink" title="1、懒汉式（效率太低）"></a>1、懒汉式（效率太低）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过懒汉模式实现单例模式，synchronized同步会大大降低效率</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pigscode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonLanHan</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonLanHan instance;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonLanHan</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"我是懒汉"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//如果不加synchronized就会造成多线程中的不安全</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">static</span> SingletonLanHan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">			instance = <span class="keyword">new</span> SingletonLanHan();</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2、饿汉式（基于classloader机制，但不能懒加载）"><a href="#2、饿汉式（基于classloader机制，但不能懒加载）" class="headerlink" title="2、饿汉式（基于classloader机制，但不能懒加载）"></a>2、饿汉式（基于classloader机制，但不能懒加载）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 饿汉模式实现单例模式，不能实现懒加载</span></span><br><span class="line"><span class="comment"> * 在类加载阶段就进行了实例化</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pigscode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonEHan</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> SingletonEHan instance = <span class="keyword">new</span> SingletonEHan();</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingletonEHan</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"饿汉创建成功"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="comment">//静态工厂模式实例化对象</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonEHan <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3、静态内部类实现"><a href="#3、静态内部类实现" class="headerlink" title="3、静态内部类实现"></a>3、静态内部类实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过静态内部类实现单例模式，可以实现懒加载</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pigscode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonInnerClass</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SingletonHolder</span></span>&#123;</span><br><span class="line">		<span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> SingletonInnerClass instance = <span class="keyword">new</span> SingletonInnerClass();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">SingletonInnerClass</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"我是通过静态内部类实现"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingletonInnerClass <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> SingletonHolder.instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4、枚举类实现（最佳方法）"><a href="#4、枚举类实现（最佳方法）" class="headerlink" title="4、枚举类实现（最佳方法）"></a>4、枚举类实现（最佳方法）</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过枚举实现的单例模式</span></span><br><span class="line"><span class="comment"> * 不仅能实现多线程的同步</span></span><br><span class="line"><span class="comment"> * 还能防止反序列化创建不同的实例</span></span><br><span class="line"><span class="comment"> * 目前认为的最佳实现单例模式的方法</span></span><br><span class="line"><span class="comment"> * 枚举类内部实现了public static final</span></span><br><span class="line"><span class="comment"> * 并默认调用了私有无参构造器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pigscode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">enum</span> SingtonMeiJu &#123;</span><br><span class="line"></span><br><span class="line">	INSTANCE;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingtonMeiJu</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"我是通过枚举实现的"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="5、双重检查锁-DCL"><a href="#5、双重检查锁-DCL" class="headerlink" title="5、双重检查锁(DCL)"></a>5、双重检查锁(DCL)</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 双重检查锁实现单例模式</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> pigscode</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SingtonDCL</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//使用volatile防止指令重排序</span></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">volatile</span> <span class="keyword">static</span> SingtonDCL instance;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">private</span> <span class="title">SingtonDCL</span><span class="params">()</span></span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"通过双重校验锁实现单例模式"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> SingtonDCL <span class="title">getInstance</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">			<span class="comment">//使用synchronized同步方法块，可以提升性能</span></span><br><span class="line">			<span class="keyword">synchronized</span>(SingtonDCL<span class="class">.<span class="keyword">class</span>)</span>&#123;</span><br><span class="line">				<span class="comment">/**</span></span><br><span class="line"><span class="comment">				 * 第二次检查的目的是为了防止两个线程都经过了第一道检查</span></span><br><span class="line"><span class="comment">				 * 然后一个线程抢到锁后进入了代码块，创建了实例，然后释放锁</span></span><br><span class="line"><span class="comment">				 * 第二个线程又抢到锁进入了代码块</span></span><br><span class="line"><span class="comment">				 * 如果没有第二次检查，第二个线程就会创建第二个实例</span></span><br><span class="line"><span class="comment">				 */</span></span><br><span class="line">				<span class="keyword">if</span>(instance == <span class="keyword">null</span>)&#123;</span><br><span class="line">					instance = <span class="keyword">new</span> SingtonDCL();</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> instance;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" data-id="ck74iars70000hcu925ww5cwd" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-集合的认识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/" class="article-date">
+  <time datetime="2020-01-03T08:26:14.000Z" itemprop="datePublished">2020-01-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/">单例模式的实现</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>集合类存放于Java.util包中，主要有3种：set(集）、list(列表包含Queue）和map(映射)。 </p>
+<ul>
+<li><p>Collection：Collection是集合List、Set、Queue的最基本的接口。 </p>
+</li>
+<li><p>Iterator：迭代器，可以通过迭代器遍历集合中的数据 </p>
+</li>
+<li><p>Map：是映射表的基础接口 </p>
+</li>
+</ul>
+<h2 id="java集合框架的层次结构"><a href="#java集合框架的层次结构" class="headerlink" title="java集合框架的层次结构"></a><strong>java集合框架的层次结构</strong></h2><p>Collection接口：　</p>
+<p>　　　　　　　Set接口：</p>
+<p>　　　　　　　　　　　　HashSet具体类</p>
+<p>　　　　　　　　　　　　LinkedHashSet具体类</p>
+<p>　　　　　　　　　　　　TreeSet具体类</p>
+<p>　　　　　　　List接口：　<br>　　　　　　　　　　　　ArrayList具体类</p>
+<p>　　　　　　　　　　　　LinkedList具体类</p>
+<p>　　　　　　　　　　　　向量类Vector具体类</p>
+<p>　　　　　　　　　　　　Stack具体类</p>
+<p>Map接口：<br>　　　　　　　HashMap类</p>
+<p>　　　　　　　LinkedHashMap类</p>
+<p>　　　　　　　TreeMap类　 </p>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a><strong>HashSet</strong></h3><p>HashSet是Set接口的一个子类，主要的特点是：里面不能存放重复元素，而且采用散列的存储方法，所以没有顺序。这里所说的没有顺序是指：元素插入的顺序与输出的顺序不一致。</p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a><strong>ArrayList</strong></h3><p>ArrayList是List的子类，它和HashSet想法，允许存放重复元素，因此有序。集合中元素被访问的顺序取决于集合的类型。如果对ArrayList进行访问，迭代器将从索引0开始，每迭代一次，索引值加1。然而，如果访问HashSet中的元素，每个元素将会按照某种随机的次序出现。虽然可以确定在迭代过程中能够遍历到集合中的所有元素，但却无法预知元素被访问的次序。</p>
+<h3 id="List-Iterator"><a href="#List-Iterator" class="headerlink" title="List Iterator"></a>List Iterator</h3><p>ListIterator是一种可以在任何位置进行高效地插入和删除操作的有序序列。</p>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections类的静态方法synchronizedMap获得线程安全的HashMap。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/" data-id="ck74iarsw0004hcu90vc0fgj3" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-HDFS读写流程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/" class="article-date">
@@ -278,7 +403,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></li></ul>
     </div>
   </div>
 
@@ -298,7 +423,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 10px;">Java</a>
+      <a href="/tags/Hadoop/" style="font-size: 10px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a>
     </div>
   </div>
 
@@ -307,7 +432,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
     </div>
   </div>
 
@@ -320,6 +445,14 @@
       <ul>
         
           <li>
+            <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/">单例模式的实现</a>
+          </li>
+        
+          <li>
             <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/">HDFS读写流程</a>
           </li>
         
@@ -329,10 +462,6 @@
         
           <li>
             <a href="/2019/08/25/%E4%BA%8C%E5%8F%89%E6%A0%91%E6%B7%B1%E5%BA%A6/">二叉树深度</a>
-          </li>
-        
-          <li>
-            <a href="/2019/08/22/%E9%9B%86%E5%90%88/">集合</a>
           </li>
         
       </ul>

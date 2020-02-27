@@ -5,18 +5,19 @@
   
 
   
-  <title>Java | PigsCode</title>
+  <title>单例模式的实现 | PigsCode</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录从大学来生活，学习，比赛的记录。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Java">
-<meta property="og:url" content="http://yoursite.com/Java/index.html">
+  <meta name="description" content="集合集合类存放于Java.util包中，主要有3种：set(集）、list(列表包含Queue）和map(映射)。   Collection：Collection是集合List、Set、Queue的最基本的接口。   Iterator：迭代器，可以通过迭代器遍历集合中的数据   Map：是映射表的基础接口    java集合框架的层次结构Collection接口：　 　　　　　　　Set接口：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="单例模式的实现">
+<meta property="og:url" content="http://yoursite.com/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/index.html">
 <meta property="og:site_name" content="PigsCode">
-<meta property="og:description" content="记录从大学来生活，学习，比赛的记录。">
+<meta property="og:description" content="集合集合类存放于Java.util包中，主要有3种：set(集）、list(列表包含Queue）和map(映射)。   Collection：Collection是集合List、Set、Queue的最基本的接口。   Iterator：迭代器，可以通过迭代器遍历集合中的数据   Map：是映射表的基础接口    java集合框架的层次结构Collection接口：　 　　　　　　　Set接口：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-12T04:01:32.000Z">
-<meta property="article:modified_time" content="2020-02-12T04:01:32.938Z">
+<meta property="article:published_time" content="2020-01-03T08:26:14.000Z">
+<meta property="article:modified_time" content="2020-02-27T08:29:35.231Z">
 <meta property="article:author" content="PigsCode">
+<meta property="article:tag" content="Java">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="PigsCode" type="application/atom+xml">
@@ -70,12 +71,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-集合的认识" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Java/index.html" class="article-date">
-  <time datetime="2020-02-12T04:01:32.000Z" itemprop="datePublished">2020-02-12</time>
+    <a href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/" class="article-date">
+  <time datetime="2020-01-03T08:26:14.000Z" itemprop="datePublished">2020-01-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -84,7 +89,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Java
+      单例模式的实现
     </h1>
   
 
@@ -92,17 +97,63 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="集合"><a href="#集合" class="headerlink" title="集合"></a>集合</h2><p>集合类存放于Java.util包中，主要有3种：set(集）、list(列表包含Queue）和map(映射)。 </p>
+<ul>
+<li><p>Collection：Collection是集合List、Set、Queue的最基本的接口。 </p>
+</li>
+<li><p>Iterator：迭代器，可以通过迭代器遍历集合中的数据 </p>
+</li>
+<li><p>Map：是映射表的基础接口 </p>
+</li>
+</ul>
+<h2 id="java集合框架的层次结构"><a href="#java集合框架的层次结构" class="headerlink" title="java集合框架的层次结构"></a><strong>java集合框架的层次结构</strong></h2><p>Collection接口：　</p>
+<p>　　　　　　　Set接口：</p>
+<p>　　　　　　　　　　　　HashSet具体类</p>
+<p>　　　　　　　　　　　　LinkedHashSet具体类</p>
+<p>　　　　　　　　　　　　TreeSet具体类</p>
+<p>　　　　　　　List接口：　<br>　　　　　　　　　　　　ArrayList具体类</p>
+<p>　　　　　　　　　　　　LinkedList具体类</p>
+<p>　　　　　　　　　　　　向量类Vector具体类</p>
+<p>　　　　　　　　　　　　Stack具体类</p>
+<p>Map接口：<br>　　　　　　　HashMap类</p>
+<p>　　　　　　　LinkedHashMap类</p>
+<p>　　　　　　　TreeMap类　 </p>
+<h3 id="HashSet"><a href="#HashSet" class="headerlink" title="HashSet"></a><strong>HashSet</strong></h3><p>HashSet是Set接口的一个子类，主要的特点是：里面不能存放重复元素，而且采用散列的存储方法，所以没有顺序。这里所说的没有顺序是指：元素插入的顺序与输出的顺序不一致。</p>
+<h3 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a><strong>ArrayList</strong></h3><p>ArrayList是List的子类，它和HashSet想法，允许存放重复元素，因此有序。集合中元素被访问的顺序取决于集合的类型。如果对ArrayList进行访问，迭代器将从索引0开始，每迭代一次，索引值加1。然而，如果访问HashSet中的元素，每个元素将会按照某种随机的次序出现。虽然可以确定在迭代过程中能够遍历到集合中的所有元素，但却无法预知元素被访问的次序。</p>
+<h3 id="List-Iterator"><a href="#List-Iterator" class="headerlink" title="List Iterator"></a>List Iterator</h3><p>ListIterator是一种可以在任何位置进行高效地插入和删除操作的有序序列。</p>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>HashMap基于哈希表的 Map 接口的实现。此实现提供所有可选的映射操作，并允许使用 null 值和 null 键。（除了不同步和允许使用 null 之外，HashMap 类与 Hashtable 大致相同。）此类不保证映射的顺序，特别是它不保证该顺序恒久不变。值得注意的是HashMap不是线程安全的，如果想要线程安全的HashMap，可以通过Collections类的静态方法synchronizedMap获得线程安全的HashMap。</p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/Java/index.html" data-id="ck74i874h0002hku9eku437m3" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/" data-id="ck74iarsw0004hcu90vc0fgj3" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          单例模式的实现
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HDFS读写流程</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
