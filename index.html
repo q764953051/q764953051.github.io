@@ -70,6 +70,84 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-斐波那契数列" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="article-date">
+  <time datetime="2020-02-28T12:39:54.000Z" itemprop="datePublished">2020-02-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>斐波那契数列（Fibonacci sequence），又称<a href="https://baike.baidu.com/item/黄金分割/115896" target="_blank" rel="noopener">黄金分割</a>数列、因<a href="https://baike.baidu.com/item/数学家/1210991" target="_blank" rel="noopener">数学家</a>列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“<a href="https://baike.baidu.com/item/兔子数列/6849441" target="_blank" rel="noopener">兔子数列</a>”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……</p>
+<p>斐波纳契数列以如下被以递推的方法定义：<strong>F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)</strong>（n&gt;=3，n∈N*）</p>
+<h3 id="2-递推公式"><a href="#2-递推公式" class="headerlink" title="2. 递推公式"></a>2. 递推公式</h3><p>斐波那契数列：1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, …</p>
+<p>如果设F(n）为该数列的第n项（n∈N*），那么这句话可以写成如下形式：:F(n)=F(n-1)+F(n-2)</p>
+<p>显然这是一个线性<a href="https://baike.baidu.com/item/递推数列/9140424" target="_blank" rel="noopener">递推数列</a>。</p>
+<h3 id="3-通项公式"><a href="#3-通项公式" class="headerlink" title="3. 通项公式"></a>3. 通项公式</h3><p><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D245/sign=456a7a09b61bb0518b24b42c037ada77/503d269759ee3d6db9e6f1e046166d224f4adefd.jpg" alt="img"></p>
+<p>(如上，又称为“比内公式”，是用<a href="https://baike.baidu.com/item/无理数" target="_blank" rel="noopener">无理数</a>表示有理数的一个范例。)</p>
+<p><strong>注：此时</strong></p>
+<p>​                                                                     <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D210/sign=d590b15eb28f8c54e7d3c22e0a282dee/71cf3bc79f3df8dcabc1f821cb11728b46102885.jpg" alt="img"> </p>
+<p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D99/sign=ab723815922bd40746c7dff47b894919/42166d224f4a20a4e4759afa95529822720ed0a0.jpg" alt="img"></p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>假设一对幼年兔子需要一个月长成成年兔子，一对成年兔子五个月后每个月都可以繁衍出一对新的幼年兔子。不考虑死亡的情况，问第 N 个月时共有多少对兔子？</p>
+<p>这是一个典型的斐波那契数列问题，即</p>
+<p>第一个月有一对兔子；</p>
+<p>第二个月兔子长大了，但还是只有一对兔子；</p>
+<p>第三个月兔子长大了，但还是只有一对兔子；</p>
+<p>第四个月兔子长大了，但还是只有一对兔子；</p>
+<p>第五个月兔子长大了，但还是只有一对兔子；</p>
+<p>第六个月多了一对幼年兔子，共有两对兔子了；</p>
+<p>第七个月又生了一对幼年兔子，同时第二个月的幼年兔子长成了成年兔子；</p>
+<p>……</p>
+<p>那么兔子数量的规律即：1，1，1，1，1，2，3，5……</p>
+<p>设定第 0 个月数量为 0，观察可得，从第 6个月开始，每个月的兔子数量都等于前两个月兔子数量的和。这就是著名的斐波那契数列。</p>
+<p>递归解法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.print(&quot;请输入月份：&quot;);</span><br><span class="line">    int n &#x3D; new Scanner(System.in).nextInt();</span><br><span class="line">    System.out.println(&quot;兔子的对数为：&quot; + getNums(n));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static int getNums(int n) &#123;</span><br><span class="line">    if (n &lt;&#x3D; 5) return 1;</span><br><span class="line">    else</span><br><span class="line">    return getNums(n - 1) + getNums(n - 5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这个比较简单易懂，设定 n 为 0 或者 1 的时候为递归的跳出条件，其余情况直接使用递归返回上两个月的数量和即可。</p>
+<p>非递归解法<br>如果不使用递归，那我们需要开辟一块数据，来存储我们“前面月份”得到的数量。</p>
+<p>我们使用 动态规划 的思想，即我们需要求解第 N 个月的兔子数量，依赖于求解第 N-1 个月和第 N-5 个月的兔子数量这两个子问题，我们可以自底向上的求解出每个子问题的解，并保存起来，然后最终求解第 N 个月的兔子数量时直接使用已知的子问题的解即可。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNums</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    nums[<span class="number">1</span>] = <span class="number">1</span>; <span class="comment">// 初始状态：nums[0] = 0, nums[1] = 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        nums[i] = nums[i - <span class="number">1</span>] + nums[i - <span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们使用了 nums 这个数组保存了每个月兔子数量的值，其实我们也大可不必这么奢侈，在这个问题中我们其实只需要知道前两个月的情况即可，那么我们可以只创建一个长度为 5的数组分别保存 N-5 个月和 N-1 个月的情况即可。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNums1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">5</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 使用一个长度为 5 的数组存储前5位的值</span></span><br><span class="line">    <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">0</span>, <span class="number">1</span> ,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        result = nums[<span class="number">0</span>] + nums[<span class="number">1</span>];</span><br><span class="line">        nums[<span class="number">0</span>] = nums[<span class="number">1</span>];</span><br><span class="line">        nums[<span class="number">1</span>] = result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结<br>使用非递归的解法（动态规划），效率上来说也会比递归好很多，不仅仅是因为递归会使得栈的深度变得很大，而且在递归的过程中，求解 getNums(n - 1) + getNums(n - 5) 时，在不同的 n 值下，还会产生很多重复的计算。而非递归的方式仅仅只是获取到之前的值使用，不存在重复的计算消耗。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" data-id="ck7bdkkz3000010u90gfe8vv8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-单例模式的实现" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" class="article-date">
@@ -270,11 +348,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>一、调优的目的<br> 充分的利用机器的性能，更快的完成mr程序的计算任务。甚至是在有限的机器条件下，能够支持运行足够多的mr程序。<br> 二、调优的总体概述<br> 从mr程序的内部运行机制，我们可以了解到一个mr程序由mapper和reducer两个阶段组成，其中mapper阶段包括数据的读取、map处理以及写出操作(排序和合并/sort&amp;merge)，而reducer阶段包含mapper输出数据的获取、数据合并(sort&amp;merge)、reduce处理以及写出操作。那么在这七个子阶段中，能够进行较大力度的进行调优的就是map输出、reducer数据合并以及reducer个数这三个方面的调优操作。也就是说虽然性能调优包括cpu、内存、磁盘io以及网络这四个大方面，但是从mr程序的执行流程中，我们可以知道主要有调优的是内存、磁盘io以及网络。在mr程序中调优，主要考虑的就是减少网络传输和减少磁盘IO操作，故本次课程的mr调优主要包括服务器调优、代码调优、mapper调优、reducer调优以及runner调优这五个方面。<br> 三、服务器调优<br> 服务器调优主要包括服务器参数调优和jvm调优。在本次项目中，由于我们使用hbase作为我们分析数据的原始数据存储表，所以对于hbase我们也需要进行一些调优操作。除了参数调优之外，和其他一般的java程序一样，还需要进行一些jvm调优。</p>
+        <p>一、调优的目的<br> 充分的利用机器的性能，更快的完成mr程序的计算任务。甚至是在有限的机器条件下，能够支持运行足够多的mr程序。<br> 二、调优的总体概述<br> 从mr程序的内部运行机制，我们可以了解到一个mr程序由mapper和reducer两个阶段组成，其中mapper阶段包括数据的读取、map处理以及写出操作(排序和合并/sort&amp;merge)，而reducer阶段包含mapper输出数据的获取、数据合并(sort&amp;merge)、reduce处理以及写出操作。那么在这七个子阶段中，能够进行较大力度的进行调优的就是map输出、reducer数据合并以及reducer个数这三个方面的调优操作。也就是说虽然性能调优包括cpu、内存、磁盘io以及网络这四个大方面，但是从mr程序的执行流程中，我们可以知道主要有调优的是内存、磁盘io以及网络。在mr程序中调优，主要考虑的就是减少网络传输和减少磁盘IO操作，mr调优主要包括服务器调优、代码调优、mapper调优、reducer调优以及runner调优这五个方面。<br> 三、服务器调优<br> 服务器调优主要包括服务器参数调优和jvm调优。除了参数调优之外，和其他一般的java程序一样，还需要进行一些jvm调优。</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">hdfs调优</span><br><span class="line"><span class="number">1</span>. dfs.datanode.failed.volumes.tolerated: 允许发生磁盘错误的磁盘数量，默认为<span class="number">0</span>，表示不允许datanode发生磁盘异常。当挂载多个磁盘的时候，可以修改该值。</span><br><span class="line"><span class="number">2</span>. dfs.replication: 复制因子，默认<span class="number">3</span></span><br><span class="line"><span class="number">3</span>. dfs.namenode.handler.count: namenode节点并发线程量，默认<span class="number">10</span></span><br><span class="line"><span class="number">4</span>. dfs.datanode.handler.count：datanode之间的并发线程量，默认<span class="number">10</span>。</span><br><span class="line"><span class="number">5</span>. dfs.datanode.max.transfer.threads：datanode提供的数据流操作的并发线程量，默认<span class="number">4096</span>。</span><br><span class="line">    一般将其设置为linux系统的文件句柄数的<span class="number">85</span>%~<span class="number">90</span>%之间，查看文件句柄数语句ulimit -a，修改vim /etc/security/limits.conf, 不能设置太大</span><br><span class="line">    文件末尾，添加</span><br><span class="line">        * soft nofile <span class="number">65535</span></span><br><span class="line">        * hard nofile <span class="number">65535</span></span><br><span class="line">        注意：句柄数不能够太大，可以设置为<span class="number">1000000</span>以下的所有数值，一般不设置为-<span class="number">1</span>。</span><br><span class="line">        异常处理：当设置句柄数较大的时候，重新登录可能出现unable load session的提示信息，这个时候采用单用户模式进行修改操作即可。</span><br><span class="line">            单用户模式：</span><br><span class="line">                启动的时候按<span class="string">'a'</span>键，进入选择界面，然后按<span class="string">'e'</span>键进入kernel修改界面，然后选择第二行<span class="string">'kernel...'</span>，按<span class="string">'e'</span>键进行修改，在最后添加空格+single即可，按回车键回到修改界面，最后按<span class="string">'b'</span>键进行单用户模式启动，当启动成功后，还原文件后保存，最后退出(exit)重启系统即可。</span><br><span class="line"><span class="number">6</span>. io.file.buffer.size: 读取/写出数据的buffer大小，默认<span class="number">4096</span>，一般不用设置，推荐设置为<span class="number">4096</span>的整数倍(物理页面的整数倍大小)。</span><br><span class="line"></span><br><span class="line">hbase调优</span><br><span class="line"><span class="number">1</span>. 设置regionserver的内存大小，默认为<span class="number">1</span>g，推荐设置为<span class="number">4</span>g。</span><br><span class="line">    修改conf/hbase-env.sh中的HBASE_HEAPSIZE=<span class="number">4</span>g</span><br><span class="line"><span class="number">2</span>. hbase.regionserver.handler.count: 修改客户端并发线程数，默认为<span class="number">10</span>。设置规则为，当put和scans操作比较的多的时候，将其设置为比较小的值；当get和delete操作比较多的时候，将其设置为比较大的值。原因是防止频繁GC操作导致内存异常。</span><br><span class="line"><span class="number">3</span>. 自定义hbase的分割和紧缩操作，默认情况下hbase的分割机制是当region大小达到hbase.hregion.max.filesize(<span class="number">10</span>g)的时候进行自动分割，推荐每个regionserver的region个数在<span class="number">20</span>~<span class="number">500</span>个为最佳。hbase的紧缩机制是hbase的一个非常重要的管理机制，hbase的紧缩操作是非常消耗内存和cpu的，所以一般机器压力比较大的话，推荐将其关闭，改为手动控制。</span><br><span class="line"><span class="number">4</span>. hbase.balancer.period： 设置hbase的负载均衡时间，默认为<span class="number">300000</span>(<span class="number">5</span>分钟)，在负载比较高的集群上，将其值可以适当的改大。</span><br><span class="line"><span class="number">5</span>. hfile.block.cache.size：修改hflie文件块在内存的占比，默认<span class="number">0.4</span>。在读应用比较多的系统中，可以适当的增大该值，在写应用比较多的系统中，可以适当的减少该值，不过不推荐修改为<span class="number">0</span>。</span><br><span class="line"><span class="number">6</span>. hbase.regionserver.global.memstore.upperLimit：修改memstore的内存占用比率上限，默认<span class="number">0.4</span>，当达到该值的时候，会进行flush操作将内容写的磁盘中。</span><br><span class="line"><span class="number">7</span>. hbase.regionserver.global.memstore.lowerLimit: 修改memstore的内存占用比率下限，默认<span class="number">0.38</span>，进行flush操作后，memstore占用的内存比率必须不大于该值。</span><br><span class="line"><span class="number">8</span>. hbase.hregion.memstore.flush.size: 当memstore的值大于该值的时候，进行flush操作。默认<span class="number">134217728</span>(<span class="number">128</span>M)。</span><br><span class="line"><span class="number">9</span>. hbase.hregion.memstore.block.multiplier: 修改memstore阻塞块大小比率值，默认为<span class="number">4</span>。也就是说在memstore的大小超过<span class="number">4</span>*hbase.hregion.memstore.flush.size的时候就会触发写阻塞操作。最终可能会导致出现oom异常。</span><br><span class="line"></span><br><span class="line">mapreduce调优</span><br><span class="line"><span class="number">1</span>. mapreduce.task.io.sort.factor: mr程序进行合并排序的时候，打开的文件数量，默认为<span class="number">10</span>个.</span><br><span class="line"><span class="number">2</span>. mapreduce.task.io.sort.mb: mr程序进行合并排序操作的时候或者mapper写数据的时候，内存大小，默认<span class="number">100</span>M</span><br><span class="line"><span class="number">3</span>. mapreduce.map.sort.spill.percent： mr程序进行flush操作的阀值，默认<span class="number">0.80</span>。</span><br><span class="line"><span class="number">4</span>. mapreduce.reduce.shuffle.parallelcopies：mr程序reducer copy数据的线程数，默认<span class="number">5</span>。</span><br><span class="line"><span class="number">5</span>. mapreduce.reduce.shuffle.input.buffer.percent: reduce复制map数据的时候指定的内存堆大小百分比，默认为<span class="number">0.70</span>，适当的增加该值可以减少map数据的磁盘溢出，能够提高系统性能。</span><br><span class="line"><span class="number">6</span>. mapreduce.reduce.shuffle.merge.percent：reduce进行shuffle的时候，用于启动合并输出和磁盘溢写的过程的阀值，默认为<span class="number">0.66</span>。如果允许，适当增大其比例能够减少磁盘溢写次数，提高系统性能。同mapreduce.reduce.shuffle.input.buffer.percent一起使用。</span><br><span class="line"><span class="number">7</span>. mapreduce.task.timeout：mr程序的task执行情况汇报过期时间，默认<span class="number">600000</span>(<span class="number">10</span>分钟)，设置为<span class="number">0</span>表示不进行该值的判断。</span><br></pre></td></tr></table></figure>
 
 <p>四、代码调优<br> 代码调优，主要是mapper和reducer中，针对多次创建的对象，进行代码提出操作。这个和一般的java程序的代码调优一样。<br> 五、mapper调优<br> mapper调优主要就是就一个目标：减少输出量。我们可以通过增加combine阶段以及对输出进行压缩设置进行mapper调优。<br> combine介绍：<br> 实现自定义combine要求继承reducer类，特点：<br> 以map的输出key/value键值对作为输入输出键值对，作用是减少网络输出，在map节点上就合并一部分数据。<br> 比较适合，map的输出是数值型的，方便进行统计。<br> 压缩设置：<br> 在提交job的时候分别设置启动压缩和指定压缩方式。<br> 六、reducer调优<br> reducer调优主要是通过参数调优和设置reducer的个数来完成。<br> reducer个数调优：<br> 要求：一个reducer和多个reducer的执行结果一致，不能因为多个reducer导致执行结果异常。<br> 规则：一般要求在hadoop集群中的执行mr程序，map执行完成100%后，尽量早的看到reducer执行到33%，可以通过命令hadoop job -status job_id或者web页面来查看。<br> 原因： map的执行process数是通过inputformat返回recordread来定义的；而reducer是有三部分构成的，分别为读取mapper输出数据、合并所有输出数据以及reduce处理，其中第一步要依赖map的执行，所以在数据量比较大的情况下，一个reducer无法满足性能要求的情况下，我们可以通过调高reducer的个数来解决该问题。<br> 优点：充分利用集群的优势。<br> 缺点：有些mr程序没法利用多reducer的优点，比如获取top n的mr程序。<br> 七、runner调优<br> runner调优其实就是在提交job的时候设置job参数，一般都可以通过代码和xml文件两种方式进行设置。<br> 1~8详见ActiveUserRunner(before和configure方法)，9详解TransformerBaseRunner(initScans方法)</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. mapred.child.java.opts: 修改childyard进程执行的jvm参数，针对map和reducer均有效，默认：-Xmx200m</span><br><span class="line"><span class="number">2</span>. mapreduce.map.java.opts： 需改map阶段的childyard进程执行jvm参数，默认为空，当为空的时候，使用mapred.child.java.opts。</span><br><span class="line"><span class="number">3</span>. mapreduce.reduce.java.opts：修改reducer阶段的childyard进程执行jvm参数，默认为空，当为空的时候，使用mapred.child.java.opts。</span><br><span class="line"><span class="number">4</span>. mapreduce.job.reduces： 修改reducer的个数，默认为<span class="number">1</span>。可以通过job.setNumReduceTasks方法来进行更改。</span><br><span class="line"><span class="number">5</span>. mapreduce.map.speculative：是否启动map阶段的推测执行，默认为<span class="keyword">true</span>。其实一般情况设置为<span class="keyword">false</span>比较好。可通过方法job.setMapSpeculativeExecution来设置。</span><br><span class="line"><span class="number">6</span>. mapreduce.reduce.speculative：是否需要启动reduce阶段的推测执行，默认为<span class="keyword">true</span>，其实一般情况设置为fase比较好。可通过方法job.setReduceSpeculativeExecution来设置。</span><br><span class="line"><span class="number">7</span>. mapreduce.map.output.compress：设置是否启动map输出的压缩机制，默认为<span class="keyword">false</span>。在需要减少网络传输的时候，可以设置为<span class="keyword">true</span>。</span><br><span class="line"><span class="number">8</span>. mapreduce.map.output.compress.codec：设置map输出压缩机制，默认为org.apache.hadoop.io.compress.DefaultCodec，推荐使用SnappyCodec(在之前版本中需要进行安装操作，现在版本不太清楚，安装参数：http:<span class="comment">//www.cnblogs.com/chengxin1982/p/3862309.html)</span></span><br><span class="line"><span class="number">9</span>. hbase参数设置</span><br><span class="line">    由于hbase默认是一条一条数据拿取的，在mapper节点上执行的时候是每处理一条数据后就从hbase中获取下一条数据，通过设置cache值可以一次获取多条数据，减少网络数据传输。</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>. mapred.child.java.opts: 修改childyard进程执行的jvm参数，针对map和reducer均有效，默认：-Xmx200m</span><br><span class="line"><span class="number">2</span>. mapreduce.map.java.opts： 需改map阶段的childyard进程执行jvm参数，默认为空，当为空的时候，使用mapred.child.java.opts。</span><br><span class="line"><span class="number">3</span>. mapreduce.reduce.java.opts：修改reducer阶段的childyard进程执行jvm参数，默认为空，当为空的时候，使用mapred.child.java.opts。</span><br><span class="line"><span class="number">4</span>. mapreduce.job.reduces： 修改reducer的个数，默认为<span class="number">1</span>。可以通过job.setNumReduceTasks方法来进行更改。</span><br><span class="line"><span class="number">5</span>. mapreduce.map.speculative：是否启动map阶段的推测执行，默认为<span class="keyword">true</span>。其实一般情况设置为<span class="keyword">false</span>比较好。可通过方法job.setMapSpeculativeExecution来设置。</span><br><span class="line"><span class="number">6</span>. mapreduce.reduce.speculative：是否需要启动reduce阶段的推测执行，默认为<span class="keyword">true</span>，其实一般情况设置为fase比较好。可通过方法job.setReduceSpeculativeExecution来设置。</span><br><span class="line"><span class="number">7</span>. mapreduce.map.output.compress：设置是否启动map输出的压缩机制，默认为<span class="keyword">false</span>。在需要减少网络传输的时候，可以设置为<span class="keyword">true</span>。</span><br><span class="line"><span class="number">8</span>. mapreduce.map.output.compress.codec：设置map输出压缩机制，默认为org.apache.hadoop.io.compress.DefaultCodec</span><br><span class="line"><span class="number">9</span>. hbase参数设置</span><br><span class="line">    由于hbase默认是一条一条数据拿取的，在mapper节点上执行的时候是每处理一条数据后就从hbase中获取下一条数据，通过设置cache值可以一次获取多条数据，减少网络数据传输。</span><br></pre></td></tr></table></figure>
 
 
 
@@ -473,7 +551,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 10px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+      <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
     </div>
   </div>
 
@@ -482,7 +560,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
     </div>
   </div>
 
@@ -493,6 +571,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
         
           <li>
             <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
@@ -508,10 +590,6 @@
         
           <li>
             <a href="/2019/11/27/MR%E8%B0%83%E4%BC%98/">MR调优</a>
-          </li>
-        
-          <li>
-            <a href="/2019/10/08/%E8%AE%BA%E6%96%87/">论文</a>
           </li>
         
       </ul>

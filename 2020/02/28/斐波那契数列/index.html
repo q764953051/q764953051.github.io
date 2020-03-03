@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+
+  
+  <title>斐波那契数列 | PigsCode</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、…… 斐波纳契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n-1)+F(n-2)（n&gt;&#x3D;3，n∈N*）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="斐波那契数列">
+<meta property="og:url" content="http://yoursite.com/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/index.html">
+<meta property="og:site_name" content="PigsCode">
+<meta property="og:description" content="1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、…… 斐波纳契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n-1)+F(n-2)（n&gt;&#x3D;3，n∈N*）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D245/sign=456a7a09b61bb0518b24b42c037ada77/503d269759ee3d6db9e6f1e046166d224f4adefd.jpg">
+<meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D210/sign=d590b15eb28f8c54e7d3c22e0a282dee/71cf3bc79f3df8dcabc1f821cb11728b46102885.jpg">
+<meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D99/sign=ab723815922bd40746c7dff47b894919/42166d224f4a20a4e4759afa95529822720ed0a0.jpg">
+<meta property="article:published_time" content="2020-02-28T12:39:54.000Z">
+<meta property="article:modified_time" content="2020-03-03T04:10:56.908Z">
+<meta property="article:author" content="PigsCode">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D245/sign=456a7a09b61bb0518b24b42c037ada77/503d269759ee3d6db9e6f1e046166d224f4adefd.jpg">
+  
+    <link rel="alternate" href="/atom.xml" title="PigsCode" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">PigsCode</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">记录PigsCode的成长历程</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-斐波那契数列" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" class="article-date">
+  <time datetime="2020-02-28T12:39:54.000Z" itemprop="datePublished">2020-02-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      斐波那契数列
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>斐波那契数列（Fibonacci sequence），又称<a href="https://baike.baidu.com/item/黄金分割/115896" target="_blank" rel="noopener">黄金分割</a>数列、因<a href="https://baike.baidu.com/item/数学家/1210991" target="_blank" rel="noopener">数学家</a>列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“<a href="https://baike.baidu.com/item/兔子数列/6849441" target="_blank" rel="noopener">兔子数列</a>”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……</p>
+<p>斐波纳契数列以如下被以递推的方法定义：<strong>F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)</strong>（n&gt;=3，n∈N*）</p>
+<h3 id="2-递推公式"><a href="#2-递推公式" class="headerlink" title="2. 递推公式"></a>2. 递推公式</h3><p>斐波那契数列：1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, …</p>
+<p>如果设F(n）为该数列的第n项（n∈N*），那么这句话可以写成如下形式：:F(n)=F(n-1)+F(n-2)</p>
+<p>显然这是一个线性<a href="https://baike.baidu.com/item/递推数列/9140424" target="_blank" rel="noopener">递推数列</a>。</p>
+<h3 id="3-通项公式"><a href="#3-通项公式" class="headerlink" title="3. 通项公式"></a>3. 通项公式</h3><p><img src="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D245/sign=456a7a09b61bb0518b24b42c037ada77/503d269759ee3d6db9e6f1e046166d224f4adefd.jpg" alt="img"></p>
+<p>(如上，又称为“比内公式”，是用<a href="https://baike.baidu.com/item/无理数" target="_blank" rel="noopener">无理数</a>表示有理数的一个范例。)</p>
+<p><strong>注：此时</strong></p>
+<p>​                                                                     <img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D210/sign=d590b15eb28f8c54e7d3c22e0a282dee/71cf3bc79f3df8dcabc1f821cb11728b46102885.jpg" alt="img"> </p>
+<p><img src="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D99/sign=ab723815922bd40746c7dff47b894919/42166d224f4a20a4e4759afa95529822720ed0a0.jpg" alt="img"></p>
+<h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>假设一对幼年兔子需要一个月长成成年兔子，一对成年兔子五个月后每个月都可以繁衍出一对新的幼年兔子。不考虑死亡的情况，问第 N 个月时共有多少对兔子？</p>
+<p>这是一个典型的斐波那契数列问题，即</p>
+<p>第一个月有一对兔子；</p>
+<p>第二个月兔子长大了，但还是只有一对兔子；</p>
+<p>第三个月兔子长大了，但还是只有一对兔子；</p>
+<p>第四个月兔子长大了，但还是只有一对兔子；</p>
+<p>第五个月兔子长大了，但还是只有一对兔子；</p>
+<p>第六个月多了一对幼年兔子，共有两对兔子了；</p>
+<p>第七个月又生了一对幼年兔子，同时第二个月的幼年兔子长成了成年兔子；</p>
+<p>……</p>
+<p>那么兔子数量的规律即：1，1，1，1，1，2，3，5……</p>
+<p>设定第 0 个月数量为 0，观察可得，从第 6个月开始，每个月的兔子数量都等于前两个月兔子数量的和。这就是著名的斐波那契数列。</p>
+<p>递归解法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line"></span><br><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    System.out.print(&quot;请输入月份：&quot;);</span><br><span class="line">    int n &#x3D; new Scanner(System.in).nextInt();</span><br><span class="line">    System.out.println(&quot;兔子的对数为：&quot; + getNums(n));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static int getNums(int n) &#123;</span><br><span class="line">    if (n &lt;&#x3D; 5) return 1;</span><br><span class="line">    else</span><br><span class="line">    return getNums(n - 1) + getNums(n - 5);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<p>这个比较简单易懂，设定 n 为 0 或者 1 的时候为递归的跳出条件，其余情况直接使用递归返回上两个月的数量和即可。</p>
+<p>非递归解法<br>如果不使用递归，那我们需要开辟一块数据，来存储我们“前面月份”得到的数量。</p>
+<p>我们使用 动态规划 的思想，即我们需要求解第 N 个月的兔子数量，依赖于求解第 N-1 个月和第 N-5 个月的兔子数量这两个子问题，我们可以自底向上的求解出每个子问题的解，并保存起来，然后最终求解第 N 个月的兔子数量时直接使用已知的子问题的解即可。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNums</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[n + <span class="number">1</span>];</span><br><span class="line">    nums[<span class="number">1</span>] = <span class="number">1</span>; <span class="comment">// 初始状态：nums[0] = 0, nums[1] = 1</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        nums[i] = nums[i - <span class="number">1</span>] + nums[i - <span class="number">5</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> nums[n];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们使用了 nums 这个数组保存了每个月兔子数量的值，其实我们也大可不必这么奢侈，在这个问题中我们其实只需要知道前两个月的情况即可，那么我们可以只创建一个长度为 5的数组分别保存 N-5 个月和 N-1 个月的情况即可。</p>
+<p>代码如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">getNums1</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">5</span>) <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">    <span class="comment">// 使用一个长度为 5 的数组存储前5位的值</span></span><br><span class="line">    <span class="keyword">int</span>[] nums = <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; <span class="number">0</span>, <span class="number">1</span> ,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>&#125;;</span><br><span class="line">    <span class="keyword">int</span> result = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">5</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        result = nums[<span class="number">0</span>] + nums[<span class="number">1</span>];</span><br><span class="line">        nums[<span class="number">0</span>] = nums[<span class="number">1</span>];</span><br><span class="line">        nums[<span class="number">1</span>] = result;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>总结<br>使用非递归的解法（动态规划），效率上来说也会比递归好很多，不仅仅是因为递归会使得栈的深度变得很大，而且在递归的过程中，求解 getNums(n - 1) + getNums(n - 5) 时，在不同的 n 值下，还会产生很多重复的计算。而非递归的方式仅仅只是获取到之前的值使用，不存在重复的计算消耗。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" data-id="ck7bdkkz3000010u90gfe8vv8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">单例模式的实现</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/" rel="tag">MapReduce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Hadoop/" style="font-size: 20px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 20px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/01/">一月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/12/">十二月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/11/">十一月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/10/">十月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">八月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/">斐波那契数列</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
+          </li>
+        
+          <li>
+            <a href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/">集合的认识</a>
+          </li>
+        
+          <li>
+            <a href="/2019/12/12/HDFS%E8%AF%BB%E5%86%99%E6%B5%81%E7%A8%8B/">HDFS读写流程</a>
+          </li>
+        
+          <li>
+            <a href="/2019/11/27/MR%E8%B0%83%E4%BC%98/">MR调优</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 PigsCode<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+  </div>
+</body>
+</html>
