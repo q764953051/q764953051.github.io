@@ -7,18 +7,18 @@
   
   <title>斐波那契数列 | PigsCode</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、…… 斐波纳契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n-1)+F(n-2)（n&gt;&#x3D;3，n∈N*）">
+  <meta name="description" content="​        这是奇安信的一道笔试题，当初做的时候没想到内存溢出问题，直接选择了递归做法，导致case率为70%，所以总结了下这个问题的两种做法。 1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、">
 <meta property="og:type" content="article">
 <meta property="og:title" content="斐波那契数列">
 <meta property="og:url" content="http://yoursite.com/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/index.html">
 <meta property="og:site_name" content="PigsCode">
-<meta property="og:description" content="1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、…… 斐波纳契数列以如下被以递推的方法定义：F(1)&#x3D;1，F(2)&#x3D;1, F(n)&#x3D;F(n-1)+F(n-2)（n&gt;&#x3D;3，n∈N*）">
+<meta property="og:description" content="​        这是奇安信的一道笔试题，当初做的时候没想到内存溢出问题，直接选择了递归做法，导致case率为70%，所以总结了下这个问题的两种做法。 1. 定义斐波那契数列（Fibonacci sequence），又称黄金分割数列、因数学家列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“兔子数列”，指的是这样一个数列：1、1、2、3、5、8、13、">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gss0.bdstatic.com/-4o3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D245/sign=456a7a09b61bb0518b24b42c037ada77/503d269759ee3d6db9e6f1e046166d224f4adefd.jpg">
 <meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D210/sign=d590b15eb28f8c54e7d3c22e0a282dee/71cf3bc79f3df8dcabc1f821cb11728b46102885.jpg">
 <meta property="og:image" content="https://gss2.bdstatic.com/9fo3dSag_xI4khGkpoWK1HF6hhy/baike/s%3D99/sign=ab723815922bd40746c7dff47b894919/42166d224f4a20a4e4759afa95529822720ed0a0.jpg">
 <meta property="article:published_time" content="2020-02-28T12:39:54.000Z">
-<meta property="article:modified_time" content="2020-03-03T04:10:56.908Z">
+<meta property="article:modified_time" content="2020-03-03T04:14:22.505Z">
 <meta property="article:author" content="PigsCode">
 <meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
@@ -101,7 +101,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>斐波那契数列（Fibonacci sequence），又称<a href="https://baike.baidu.com/item/黄金分割/115896" target="_blank" rel="noopener">黄金分割</a>数列、因<a href="https://baike.baidu.com/item/数学家/1210991" target="_blank" rel="noopener">数学家</a>列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“<a href="https://baike.baidu.com/item/兔子数列/6849441" target="_blank" rel="noopener">兔子数列</a>”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……</p>
+        <p>​        这是奇安信的一道笔试题，当初做的时候没想到内存溢出问题，直接选择了递归做法，导致case率为70%，所以总结了下这个问题的两种做法。</p>
+<h3 id="1-定义"><a href="#1-定义" class="headerlink" title="1. 定义"></a>1. 定义</h3><p>斐波那契数列（Fibonacci sequence），又称<a href="https://baike.baidu.com/item/黄金分割/115896" target="_blank" rel="noopener">黄金分割</a>数列、因<a href="https://baike.baidu.com/item/数学家/1210991" target="_blank" rel="noopener">数学家</a>列昂纳多·斐波那契（Leonardoda Fibonacci）以兔子繁殖为例子而引入，故又称为“<a href="https://baike.baidu.com/item/兔子数列/6849441" target="_blank" rel="noopener">兔子数列</a>”，指的是这样一个数列：1、1、2、3、5、8、13、21、34、……</p>
 <p>斐波纳契数列以如下被以递推的方法定义：<strong>F(1)=1，F(2)=1, F(n)=F(n-1)+F(n-2)</strong>（n&gt;=3，n∈N*）</p>
 <h3 id="2-递推公式"><a href="#2-递推公式" class="headerlink" title="2. 递推公式"></a>2. 递推公式</h3><p>斐波那契数列：1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, …</p>
 <p>如果设F(n）为该数列的第n项（n∈N*），那么这句话可以写成如下形式：:F(n)=F(n-1)+F(n-2)</p>
