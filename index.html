@@ -207,6 +207,70 @@
 
 
   
+    <article id="post-悲观锁乐观锁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/" class="article-date">
+  <time datetime="2020-02-03T08:26:14.000Z" itemprop="datePublished">2020-02-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/">悲观锁乐观锁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、什么悲观锁？"><a href="#1、什么悲观锁？" class="headerlink" title="1、什么悲观锁？"></a><strong>1、什么悲观锁？</strong></h2><p>顾名思义，悲观锁是基于一种悲观的态度类来防止一切数据冲突，它是以一种预防的姿态在修改数据之前把数据锁住，然后再对数据进行读写，在它释放锁之前任何人都不能对其数据进行操作，直到前面一个人把锁释放后下一个人数据加锁才可对数据进行加锁，然后才可以对数据进行操作，一般数据库本身锁的机制都是基于悲观锁的机制实现的;</p>
+<p>特点：可以完全保证数据的独占性和正确性，因为每次请求都会先对数据进行加锁， 然后进行数据操作，最后再解锁，而加锁释放锁的过程会造成消耗，所以性能不高;</p>
+<p>手动加悲观锁：读锁LOCK tables test_db read释放锁UNLOCK TABLES;</p>
+<p>写锁：LOCK tables test_db WRITE释放锁UNLOCK TABLES;</p>
+<h2 id="2、什么是乐观锁？"><a href="#2、什么是乐观锁？" class="headerlink" title="2、什么是乐观锁？"></a>2、什么是乐观锁？</h2><p>乐观锁是对于数据冲突保持一种乐观态度，操作数据时不会对操作的数据进行加锁（这使得多个任务可以并行的对数据进行操作），只有到数据提交的时候才通过一种机制来验证数据是否存在冲突(一般实现方式是通过加版本号然后进行版本号的对比方式实现);</p>
+<p>特点：乐观锁是一种并发类型的锁，其本身不对数据进行加锁通而是通过业务实现锁的功能，不对数据进行加锁就意味着允许多个请求同时访问数据，同时也省掉了对数据加锁和解锁的过程，这种方式大大的提高了数据操作的性能;</p>
+<p>乐观锁实现形式：</p>
+<p>表A 字段</p>
+<p><img src="https://pic3.zhimg.com/80/v2-bc7ca68afd0b4b21b074fc4d7b1d6fba_720w.jpg" alt="img"></p>
+<p>现在有两个请求同时操作表A</p>
+<p>操作1先查询出需要检索的数据为：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-5cd684ca5b513391caecfe4fd36dd55e_720w.jpg" alt="img"></p>
+<p>操作2也查询出需要检索的数据为：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-cbe60511d276244eca7e70e3610dfe2b_720w.jpg" alt="img"></p>
+<p>操作1把Name字段数据修改成lisi 比操作2先提交;</p>
+<p>此时提交操作1会把之前查询到的version与现在的数据的version进行比较，版本相同则可以提交，版本不同则视为数据过期：</p>
+<p>SQL语句:update A set Name=lisi,version=version+1 where ID=#{id} and version=#{version}</p>
+<p>此时数据库变成了如下</p>
+<p><img src="https://pic2.zhimg.com/80/v2-391bd2c326b3440047aaf36bdfb81ae1_720w.jpg" alt="img"></p>
+<p>那么最后操作2修改了数据来提交的时候是以操作1同样的方式，当然最后肯定不能提交成功，因为他手里的版本号和现在数据库里的版本号不匹配；</p>
+<p>最后盗图一张来解释</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4e4f37cc8e1904713660c9036b8afe7e_720w.jpg" alt="img"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/" data-id="ck7zssjng0000y0u9duz50nc4" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%94%81/" rel="tag">锁</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-反转字符串" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/01/05/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="article-date">
@@ -576,67 +640,12 @@
 
 
   
-    <article id="post-集合" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/08/22/%E9%9B%86%E5%90%88/" class="article-date">
-  <time datetime="2019-08-22T09:45:09.000Z" itemprop="datePublished">2019-08-22</time>
-</a>
+
+
+  <nav id="page-nav">
     
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/22/%E9%9B%86%E5%90%88/">集合</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>数组是用来存放多个具有相同数据类型的数据结构，数组可以方便的使用索引对大量同类型的数据进行操作和处理。在Java中，数组的声明方式有如下两种：</p>
-<ul>
-<li>写法一：数据类型[ ] 数组名；</li>
-<li>写法二：数据类型 数组名[ ]；</li>
-</ul>
-<p>主要体现在中括号的位置不同，写法二是类似C/C++ 语言的风格。</p>
-<p>数组的创建也有两种方式（以int数组为例）：</p>
-<ul>
-<li>写法一：int[ ] arr={1,3,5,7};</li>
-<li>写法二：int[ ] arr=new int[]{1,3,5,7};</li>
-</ul>
-<p>数组的元素是通过索引访问的。数组索引从 0 开始，所以索引值从 0 到 数组长度-1。</p>
-<p>访问数组长度：数组名.length</p>
-<p>访问数组元素：数组名[下标] </p>
-<ul>
-<li>下标范围：0 至 数组名.length-1</li>
-</ul>
-<p>遍历数组元素：通过for循环</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/08/22/%E9%9B%86%E5%90%88/" data-id="ck7mub5kq000vogu96iwqf6fq" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/" rel="tag">Java</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &amp;raquo;</a>
+  </nav>
 
 </section>
         
@@ -646,7 +655,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySql/">MySql</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a></li></ul>
     </div>
   </div>
 
@@ -656,7 +665,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/" rel="tag">MapReduce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop/" rel="tag">Hadoop</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/" rel="tag">Java</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MapReduce/" rel="tag">MapReduce</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AE%97%E6%B3%95/" rel="tag">算法</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" rel="tag">设计模式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%94%81/" rel="tag">锁</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag">面经</a></li></ul>
     </div>
   </div>
 
@@ -666,7 +675,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">标签云</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Hadoop/" style="font-size: 15px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 10px;">面经</a>
+      <a href="/tags/Hadoop/" style="font-size: 15px;">Hadoop</a> <a href="/tags/Java/" style="font-size: 15px;">Java</a> <a href="/tags/MapReduce/" style="font-size: 10px;">MapReduce</a> <a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 20px;">算法</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 10px;">设计模式</a> <a href="/tags/%E9%94%81/" style="font-size: 10px;">锁</a> <a href="/tags/%E9%9D%A2%E7%BB%8F/" style="font-size: 10px;">面经</a>
     </div>
   </div>
 
@@ -696,15 +705,15 @@
           </li>
         
           <li>
+            <a href="/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/">悲观锁乐观锁</a>
+          </li>
+        
+          <li>
             <a href="/2020/01/05/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/">反转字符串</a>
           </li>
         
           <li>
             <a href="/2020/01/03/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F%E7%9A%84%E5%AE%9E%E7%8E%B0/">单例模式的实现</a>
-          </li>
-        
-          <li>
-            <a href="/2020/01/03/%E9%9B%86%E5%90%88%E7%9A%84%E8%AE%A4%E8%AF%86/">集合的认识</a>
           </li>
         
       </ul>

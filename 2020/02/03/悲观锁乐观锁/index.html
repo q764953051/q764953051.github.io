@@ -5,19 +5,26 @@
   
 
   
-  <title>Life | PigsCode</title>
+  <title>悲观锁乐观锁 | PigsCode</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录从大学来生活，学习，比赛的记录。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Life">
-<meta property="og:url" content="http://yoursite.com/Life/index.html">
+  <meta name="description" content="1、什么悲观锁？顾名思义，悲观锁是基于一种悲观的态度类来防止一切数据冲突，它是以一种预防的姿态在修改数据之前把数据锁住，然后再对数据进行读写，在它释放锁之前任何人都不能对其数据进行操作，直到前面一个人把锁释放后下一个人数据加锁才可对数据进行加锁，然后才可以对数据进行操作，一般数据库本身锁的机制都是基于悲观锁的机制实现的; 特点：可以完全保证数据的独占性和正确性，因为每次请求都会先对数据进行加锁，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="悲观锁乐观锁">
+<meta property="og:url" content="http://yoursite.com/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/index.html">
 <meta property="og:site_name" content="PigsCode">
-<meta property="og:description" content="记录从大学来生活，学习，比赛的记录。">
+<meta property="og:description" content="1、什么悲观锁？顾名思义，悲观锁是基于一种悲观的态度类来防止一切数据冲突，它是以一种预防的姿态在修改数据之前把数据锁住，然后再对数据进行读写，在它释放锁之前任何人都不能对其数据进行操作，直到前面一个人把锁释放后下一个人数据加锁才可对数据进行加锁，然后才可以对数据进行操作，一般数据库本身锁的机制都是基于悲观锁的机制实现的; 特点：可以完全保证数据的独占性和正确性，因为每次请求都会先对数据进行加锁，">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2020-02-12T04:02:08.000Z">
-<meta property="article:modified_time" content="2020-02-12T04:02:08.347Z">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-bc7ca68afd0b4b21b074fc4d7b1d6fba_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-5cd684ca5b513391caecfe4fd36dd55e_720w.jpg">
+<meta property="og:image" content="https://pic4.zhimg.com/80/v2-cbe60511d276244eca7e70e3610dfe2b_720w.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-391bd2c326b3440047aaf36bdfb81ae1_720w.jpg">
+<meta property="og:image" content="https://pic3.zhimg.com/80/v2-4e4f37cc8e1904713660c9036b8afe7e_720w.jpg">
+<meta property="article:published_time" content="2020-02-03T08:26:14.000Z">
+<meta property="article:modified_time" content="2020-03-20T06:23:42.764Z">
 <meta property="article:author" content="PigsCode">
+<meta property="article:tag" content="锁">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/80/v2-bc7ca68afd0b4b21b074fc4d7b1d6fba_720w.jpg">
   
     <link rel="alternate" href="/atom.xml" title="PigsCode" type="application/atom+xml">
   
@@ -70,12 +77,16 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-悲观锁乐观锁" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/Life/index.html" class="article-date">
-  <time datetime="2020-02-12T04:02:08.000Z" itemprop="datePublished">2020-02-12</time>
+    <a href="/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/" class="article-date">
+  <time datetime="2020-02-03T08:26:14.000Z" itemprop="datePublished">2020-02-03</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySql/">MySql</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -84,7 +95,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Life
+      悲观锁乐观锁
     </h1>
   
 
@@ -92,17 +103,60 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="1、什么悲观锁？"><a href="#1、什么悲观锁？" class="headerlink" title="1、什么悲观锁？"></a><strong>1、什么悲观锁？</strong></h2><p>顾名思义，悲观锁是基于一种悲观的态度类来防止一切数据冲突，它是以一种预防的姿态在修改数据之前把数据锁住，然后再对数据进行读写，在它释放锁之前任何人都不能对其数据进行操作，直到前面一个人把锁释放后下一个人数据加锁才可对数据进行加锁，然后才可以对数据进行操作，一般数据库本身锁的机制都是基于悲观锁的机制实现的;</p>
+<p>特点：可以完全保证数据的独占性和正确性，因为每次请求都会先对数据进行加锁， 然后进行数据操作，最后再解锁，而加锁释放锁的过程会造成消耗，所以性能不高;</p>
+<p>手动加悲观锁：读锁LOCK tables test_db read释放锁UNLOCK TABLES;</p>
+<p>写锁：LOCK tables test_db WRITE释放锁UNLOCK TABLES;</p>
+<h2 id="2、什么是乐观锁？"><a href="#2、什么是乐观锁？" class="headerlink" title="2、什么是乐观锁？"></a>2、什么是乐观锁？</h2><p>乐观锁是对于数据冲突保持一种乐观态度，操作数据时不会对操作的数据进行加锁（这使得多个任务可以并行的对数据进行操作），只有到数据提交的时候才通过一种机制来验证数据是否存在冲突(一般实现方式是通过加版本号然后进行版本号的对比方式实现);</p>
+<p>特点：乐观锁是一种并发类型的锁，其本身不对数据进行加锁通而是通过业务实现锁的功能，不对数据进行加锁就意味着允许多个请求同时访问数据，同时也省掉了对数据加锁和解锁的过程，这种方式大大的提高了数据操作的性能;</p>
+<p>乐观锁实现形式：</p>
+<p>表A 字段</p>
+<p><img src="https://pic3.zhimg.com/80/v2-bc7ca68afd0b4b21b074fc4d7b1d6fba_720w.jpg" alt="img"></p>
+<p>现在有两个请求同时操作表A</p>
+<p>操作1先查询出需要检索的数据为：</p>
+<p><img src="https://pic3.zhimg.com/80/v2-5cd684ca5b513391caecfe4fd36dd55e_720w.jpg" alt="img"></p>
+<p>操作2也查询出需要检索的数据为：</p>
+<p><img src="https://pic4.zhimg.com/80/v2-cbe60511d276244eca7e70e3610dfe2b_720w.jpg" alt="img"></p>
+<p>操作1把Name字段数据修改成lisi 比操作2先提交;</p>
+<p>此时提交操作1会把之前查询到的version与现在的数据的version进行比较，版本相同则可以提交，版本不同则视为数据过期：</p>
+<p>SQL语句:update A set Name=lisi,version=version+1 where ID=#{id} and version=#{version}</p>
+<p>此时数据库变成了如下</p>
+<p><img src="https://pic2.zhimg.com/80/v2-391bd2c326b3440047aaf36bdfb81ae1_720w.jpg" alt="img"></p>
+<p>那么最后操作2修改了数据来提交的时候是以操作1同样的方式，当然最后肯定不能提交成功，因为他手里的版本号和现在数据库里的版本号不匹配；</p>
+<p>最后盗图一张来解释</p>
+<p><img src="https://pic3.zhimg.com/80/v2-4e4f37cc8e1904713660c9036b8afe7e_720w.jpg" alt="img"></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/Life/index.html" data-id="ck7mub5j40004ogu9e5ym5s3j" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2020/02/03/%E6%82%B2%E8%A7%82%E9%94%81%E4%B9%90%E8%A7%82%E9%94%81/" data-id="ck7zssjng0000y0u9duz50nc4" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%94%81/" rel="tag">锁</a></li></ul>
+
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2020/02/28/%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          斐波那契数列
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/01/05/%E5%8F%8D%E8%BD%AC%E5%AD%97%E7%AC%A6%E4%B8%B2/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">反转字符串</div>
+    </a>
+  
+</nav>
+
   
 </article>
 
